@@ -1,1 +1,2 @@
-# Robot tests in Jenkins
+# rfrunner
+Docker build for RF scripts execution
