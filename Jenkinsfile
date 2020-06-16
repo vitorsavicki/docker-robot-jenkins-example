@@ -10,9 +10,9 @@ pipeline {
       }
     }
 
-    stage('Robot tests') {
+    stage(’Test’) {
       steps {
-        sh "docker-compose run robot"
+        sh ‘robot -d out/ my_test/’
       }
     }
 
