@@ -11,12 +11,9 @@ pipeline {
 
     stage(’Test’) {
       steps {
-<<<<<<< HEAD
+
         sh ‘robot -d out/ my_test/’
-=======
-        sh 'cat docker-compose.yml'
-        sh "docker-compose run robot"
->>>>>>> fb11deb8c6e4563d0c96b8e2a45819f0753a4146
+
       }
     }
 
