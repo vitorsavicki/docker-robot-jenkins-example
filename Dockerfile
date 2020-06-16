@@ -14,7 +14,10 @@ RUN CHROMEDRIVER_VERSION=`wget --no-verbose --output-document - https://chromedr
     unzip -qq /tmp/chromedriver_linux64.zip -d /opt/chromedriver && \
     chmod +x /opt/chromedriver/chromedriver && \
     ln -fs /opt/chromedriver/chromedriver /usr/local/bin/chromedriver
-	
+
+COPY run_tests.sh /
+RUN chmod +x /run_tests.sh
+
 VOLUME /opt/robotframework/results
 VOLUME /opt/robotframework/tests
 VOLUME /opt/robotframework/keywords
