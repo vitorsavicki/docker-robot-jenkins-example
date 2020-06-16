@@ -9,10 +9,10 @@ pipeline {
       }
     }
 
-    stage(’Test’) {
+    stage('Test') {
       steps {
 
-        sh ‘robot -d out/ my_test/’
+        sh  'robot -d out/ my_test/'
 
       }
     }
