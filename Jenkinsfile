@@ -11,6 +11,7 @@ pipeline {
 
     stage('Robot tests') {
       steps {
+        sh 'cat docker-compose.yml'
         sh "docker-compose run robot"
       }
     }
