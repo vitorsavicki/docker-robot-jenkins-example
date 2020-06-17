@@ -15,7 +15,7 @@ RUN CHROMEDRIVER_VERSION=`wget --no-verbose --output-document - https://chromedr
     chmod +x /opt/chromedriver/chromedriver && \
     ln -fs /opt/chromedriver/chromedriver /usr/local/bin/chromedriver
 
-COPY run_tests.sh /
+COPY run_tests.sh /run_tests.sh 
 RUN chmod +x /run_tests.sh
 
 VOLUME /opt/robotframework/results
