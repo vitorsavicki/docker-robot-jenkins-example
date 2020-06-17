@@ -32,7 +32,7 @@ pipeline {
                     step(
                         [
                             $class              : 'RobotPublisher',
-                            outputPath          : 'results',
+                            outputPath          : 'robot_reports',
                             outputFileName      : "output.xml",
                             reportFileName      : 'report.html',
                             logFileName         : 'log.html',
@@ -47,9 +47,9 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            archive (includes: 'results/*.html')
-        }
-    }
+    //post {
+        //always {
+            //archive (includes: 'robot_reports/*.html')
+        //}
+    //}
 }
