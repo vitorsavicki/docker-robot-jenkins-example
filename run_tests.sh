@@ -1,1 +1,0 @@
-robot -v BROWSER:chrome -d results Tests

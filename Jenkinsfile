@@ -8,9 +8,20 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Execute Tests') {
-            steps{
-                sh 'docker run -v ${PWD}/:/opt/robotframework/ interworks/rfrunner'
+        stage('Functional regression tests') {
+            agent { docker {
+                image 'ppodgorsek/robot-framework:latest'
+                args '--shm-size=1g -u root' }
+            }
+            environment {
+                BROWSER = 'firefox'
+                ROBOT_TESTS_DIR = "$WORKSPACE/robot-tests"
+                ROBOT_REPORTS_DIR = "$WORKSPACE/robot-reports"
+            }
+            steps {
+                sh '''
+                    /opt/robotframework/bin/run-tests-in-virtual-screen.sh
+                '''
             }
         }
         stage('Proccess Results') {		
@@ -31,7 +42,7 @@ pipeline {
                             otherFiles          : "**/*.png,**/*.jpg",
                         ]
                     )
-                emailext body: '${SCRIPT, template="robot.template"}', subject: "[Jenkins] Robot Framework testresults for Docker Demo Project", to: 'stefan.mandovski@interworks.com.mk', recipientProviders: [[$class: 'CulpritsRecipientProvider']], attachmentsPattern: 'results/results.zip'
+                //emailext body: '${SCRIPT, template="robot.template"}', subject: "[Jenkins] Robot Framework testresults for Docker Demo Project", to: 'stefan.mandovski@interworks.com.mk', recipientProviders: [[$class: 'CulpritsRecipientProvider']], attachmentsPattern: 'results/results.zip'
                 }
             }
         }
