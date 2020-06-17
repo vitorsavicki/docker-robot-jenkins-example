@@ -28,11 +28,11 @@ pipeline {
             steps {
                 script{
                     bat 'del "robot-reports\\*.zip'
-                    zip zipFile: 'robot-reports/results.zip', archive: false, dir: 'robot-reports', glob: '*.html'
+                    zip zipFile: 'robot-reports.zip', archive: false, dir: 'robot-reports', glob: '*.html'
                     step(
                         [
                             $class              : 'RobotPublisher',
-                            outputPath          : 'results',
+                            outputPath          : 'robot-reports',
                             outputFileName      : "output.xml",
                             reportFileName      : 'report.html',
                             logFileName         : 'log.html',
@@ -49,7 +49,7 @@ pipeline {
     }
     post {
         always {
-            archive (includes: 'results/*.html')
+            archive (includes: 'robot-reports/*.html')
         }
     }
 }
