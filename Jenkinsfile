@@ -27,8 +27,8 @@ pipeline {
         stage('Proccess Results') {		
             steps {
                 script{
-                    bat 'del "Results\\*.zip'
-                    zip zipFile: 'results/results.zip', archive: false, dir: 'results', glob: '*.html'
+                    bat 'del "robot-reports\\*.zip'
+                    zip zipFile: 'robot-reports/results.zip', archive: false, dir: 'robot-reports', glob: '*.html'
                     step(
                         [
                             $class              : 'RobotPublisher',
