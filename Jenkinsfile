@@ -28,11 +28,11 @@ pipeline {
             steps {
                 script{
                     bat 'del "Results\\*.zip'
-                    zip zipFile: 'results/results.zip', archive: false, dir: 'results', glob: '*.html'
+                    zip zipFile: "$WORKSPACE/results/results.zip", archive: false, dir: "$WORKSPACE/results" , glob: '*.html'
                     step(
                         [
                             $class              : 'hudson.plugins.robot.RobotPublisher',
-                            outputPath          : 'robot_reports',
+                            outputPath          : "$WORKSPACE/robot_reports",
                             outputFileName      : "output.xml",
                             reportFileName      : 'report.html',
                             logFileName         : 'log.html',
