@@ -26,9 +26,9 @@ pipeline {
         }
         stage('Proccess Results') {		
             steps {
-                //script{
-                    //bat 'del "Results\\*.zip'
-                    //zip zipFile: 'results/results.zip', archive: false, dir: 'results', glob: '*.html'
+                script{
+                    bat 'del "Results\\*.zip'
+                    zip zipFile: 'results/results.zip', archive: false, dir: 'results', glob: '*.html'
                     step(
                         [
                             $class              : 'RobotPublisher',
@@ -43,7 +43,7 @@ pipeline {
                         ]
                     )
                 //emailext body: '${SCRIPT, template="robot.template"}', subject: "[Jenkins] Robot Framework testresults for Docker Demo Project", to: 'stefan.mandovski@interworks.com.mk', recipientProviders: [[$class: 'CulpritsRecipientProvider']], attachmentsPattern: 'results/results.zip'
-                //}
+                }
             }
         }
     }
