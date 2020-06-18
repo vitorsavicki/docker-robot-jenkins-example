@@ -27,7 +27,7 @@ pipeline {
         stage('Proccess Results') {		
             steps {
                 script{
-                    bat 'del "Results\\*.zip'
+                    //bat 'del "Results\\*.zip'
                     zip zipFile: "$WORKSPACE/results/results.zip", archive: false, dir: "$WORKSPACE/results" , glob: '*.html'
                     step(
                         [
