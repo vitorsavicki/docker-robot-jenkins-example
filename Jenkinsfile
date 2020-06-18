@@ -26,7 +26,6 @@ pipeline {
         }
         stage('Publish Robot results') {
             steps {
-                script {
                 step(
                     [
                     $class              : 'RobotPublisher',
@@ -40,7 +39,7 @@ pipeline {
                     otherFiles          : "**/*.png,**/*.jpg",
                     ]
                 )
-                }
+
             }
         }
     }
