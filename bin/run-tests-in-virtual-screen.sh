@@ -1,5 +1,3 @@
-#!/bin/sh -xe
-
 HOME=${ROBOT_WORK_DIR}
 
 # No need for the overhead of Pabot if no parallelisation is required
