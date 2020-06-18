@@ -24,10 +24,11 @@ pipeline {
                 '''
             }
         }
+        try{
         stage('Proccess Results') {		
             steps {
                 script{
-                    try {
+
                     //bat 'del "Results\\*.zip'
                     zip zipFile: "$WORKSPACE/results/results.zip", archive: false, dir: "$WORKSPACE/results" , glob: '*.html'
                     step(
@@ -43,14 +44,16 @@ pipeline {
                             otherFiles          : "**/*.png,**/*.jpg",
                         ]
                     )
-                }
-                catch (err) {
-                    echo err.getMessage()
-                }
+                
+                
                 //emailext body: '${SCRIPT, template="robot.template"}', subject: "[Jenkins] Robot Framework testresults for Docker Demo Project", to: 'stefan.mandovski@interworks.com.mk', recipientProviders: [[$class: 'CulpritsRecipientProvider']], attachmentsPattern: 'results/results.zip'
                 }
             }
         }
+        }
+        catch (err) {
+                    echo err.getMessage()
+                }
     }
     //post {
         //always {
