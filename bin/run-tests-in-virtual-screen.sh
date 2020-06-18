@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -xe
 
 HOME=${ROBOT_WORK_DIR}
 
