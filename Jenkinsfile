@@ -25,11 +25,8 @@ pipeline {
             }
         }
         stage('Proccess Results') {		
-            sh '1'
             steps {
-                sh '2'
                 script{
-                    sh '3'
                     bat 'del "Results\\*.zip'
                     zip zipFile: 'results/results.zip', archive: false, dir: 'results', glob: '*.html'
                     step(
