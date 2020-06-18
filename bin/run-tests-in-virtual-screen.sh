@@ -1,3 +1,6 @@
+#!/bin/sh
+set -x
+
 HOME=${ROBOT_WORK_DIR}
 
 # No need for the overhead of Pabot if no parallelisation is required
@@ -20,3 +23,4 @@ else
         ${ROBOT_OPTIONS} \
         $ROBOT_TESTS_DIR
 fi
+set +x
