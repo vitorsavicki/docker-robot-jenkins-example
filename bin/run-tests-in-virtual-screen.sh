@@ -1,5 +1,4 @@
 #!/bin/sh
-set -x
 
 HOME=${ROBOT_WORK_DIR}
 
@@ -23,4 +22,3 @@ else
         ${ROBOT_OPTIONS} \
         $ROBOT_TESTS_DIR
 fi
-set +x
