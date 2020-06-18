@@ -19,9 +19,9 @@ pipeline {
                 ROBOT_REPORTS_DIR = "$WORKSPACE/robot-reports"
             }
             steps {
-                sh '''
-                    /opt/robotframework/bin/run-tests-in-virtual-screen.sh
-                '''
+                //sh '''
+                    //opt/robotframework/bin/run-tests-in-virtual-screen.sh
+                //'''
                 sh "docker run --shm-size=1g -e BROWSER=firefox -v $WORKSPACE/robot-tests:/opt/robotframework/tests:Z -v $WORKSPACE/robot-reports:/opt/robotframework/reports:Z ppodgorsek/robot-framework:latest"
             }
             post {
