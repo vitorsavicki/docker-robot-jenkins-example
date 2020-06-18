@@ -23,23 +23,10 @@ pipeline {
                     /opt/robotframework/bin/run-tests-in-virtual-screen.sh
                 '''
             }
-        }
-        stage('Publish Robot results') {
-            steps {
-                step(
-                    [
-                    $class              : 'RobotPublisher',
-                    outputPath          : 'robot-reports',
-                    outputFileName      : "**/output.xml",
-                    reportFileName      : '**/report.html',
-                    logFileName         : '**/log.html',
-                    disableArchiveOutput: false,
-                    passThreshold       : 95.0,
-                    unstableThreshold   : 90.0,
-                    otherFiles          : "**/*.png,**/*.jpg",
-                    ]
-                )
-
+            post {
+                always {
+                robot outputPath: 'robot-reports', otherFiles: '**/*.png'
+                }
             }
         }
     }
