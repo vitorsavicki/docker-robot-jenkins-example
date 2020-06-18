@@ -31,7 +31,7 @@ pipeline {
                     zip zipFile: 'results/results.zip', archive: false, dir: 'results', glob: '*.html'
                     step(
                         [
-                            $class              : 'RobotPublisher',
+                            $class              : 'hudson.plugins.robot.RobotPublisher',
                             outputPath          : 'robot_reports',
                             outputFileName      : "output.xml",
                             reportFileName      : 'report.html',
