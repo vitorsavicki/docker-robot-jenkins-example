@@ -24,40 +24,24 @@ pipeline {
                 '''
             }
         }
-        try{
-        stage('Proccess Results') {		
+        stage('Publish Robot results') {
             steps {
-                script{
-
-                    //bat 'del "Results\\*.zip'
-                    zip zipFile: "$WORKSPACE/results/results.zip", archive: false, dir: "$WORKSPACE/results" , glob: '*.html'
-                    step(
-                        [
-                            $class              : 'hudson.plugins.robot.RobotPublisher',
-                            outputPath          : "$WORKSPACE/robot_reports",
-                            outputFileName      : "output.xml",
-                            reportFileName      : 'report.html',
-                            logFileName         : 'log.html',
-                            disableArchiveOutput: false,
-                            passThreshold       : 95.0,
-                            unstableThreshold   : 90.0,
-                            otherFiles          : "**/*.png,**/*.jpg",
-                        ]
-                    )
-                
-                
-                //emailext body: '${SCRIPT, template="robot.template"}', subject: "[Jenkins] Robot Framework testresults for Docker Demo Project", to: 'stefan.mandovski@interworks.com.mk', recipientProviders: [[$class: 'CulpritsRecipientProvider']], attachmentsPattern: 'results/results.zip'
+                script {
+                step(
+                    [
+                    $class              : 'RobotPublisher',
+                    outputPath          : 'robot-reports',
+                    outputFileName      : "**/output.xml",
+                    reportFileName      : '**/report.html',
+                    logFileName         : '**/log.html',
+                    disableArchiveOutput: false,
+                    passThreshold       : 95.0,
+                    unstableThreshold   : 90.0,
+                    otherFiles          : "**/*.png,**/*.jpg",
+                    ]
+                )
                 }
             }
         }
-        }
-        catch (err) {
-                    echo err.getMessage()
-                }
-    }
-    //post {
-        //always {
-            //archive (includes: 'robot_reports/*.html')
-        //}
-    //}
+
 }
