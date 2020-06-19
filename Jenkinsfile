@@ -26,7 +26,7 @@ pipeline {
             post {
                 always {
                 robot outputPath: 'robot-reports', otherFiles: '**/*.png'
-                influxDbPublisher selectedTarget: 'myDb'
+                influxDbPublisher selectedTarget: 'mydb'
                 }
             }
         }
