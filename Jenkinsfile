@@ -22,7 +22,7 @@ pipeline {
                 //sh '''
                     //opt/robotframework/bin/run-tests-in-virtual-screen.sh
                 //'''
-                sh "docker run --shm-size=1g -e BROWSER=firefox -v $WORKSPACE/robot-reports:/opt/robotframework/reports:Z -v $WORKSPACE/robot-tests:/opt/robotframework/tests:Z ppodgorsek/robot-framework:latest"
+                sh "docker run --rm --shm-size=1g -e BROWSER=firefox -v $WORKSPACE/robot-reports:/opt/robotframework/reports:Z -v $WORKSPACE/robot-tests:/opt/robotframework/tests:Z ppodgorsek/robot-framework:latest"
             }
             post {
                 always {
